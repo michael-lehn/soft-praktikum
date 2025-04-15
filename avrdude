@@ -1,0 +1,7 @@
+#!/bin/bash
+
+WIN_AVRDUDE="/mnt/c/Program Files (x86)/Arduino/hardware/tools/avr/bin/avrdude.exe"
+WIN_CONF="/mnt/c/Program Files (x86)/Arduino/hardware/tools/avr/etc/avrdude.conf"
+
+"$WIN_AVRDUDE" -C "$WIN_CONF" "$@"
+
