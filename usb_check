@@ -1,0 +1,84 @@
+#!/bin/bash
+
+set -e
+
+SEARCH="CP210"
+echo "[INFO] Scanning for USB devices matching: $SEARCH"
+
+# --- Step 1: Extract only the Connected section ---
+USB_LIST=$(usbipd.exe list | awk '
+  BEGIN { in_section = 0 }
+  /^Connected:/ { in_section = 1; next }
+  /^[[:space:]]*$/ { in_section = 0 }
+  in_section { print }
+')
+
+# --- Step 2: Filter matching devices ---
+MATCHING=$(echo "$USB_LIST" | tr -d '\r' | grep -i "$SEARCH")
+
+if [ -z "$MATCHING" ]; then
+    echo "[INFO] No matching devices found."
+    exit 0
+fi
+
+echo
+echo "[INFO] Found devices:"
+echo "$MATCHING"
+echo
+
+# --- Step 3: Prepare bind list and attach list ---
+BIND_LIST=()
+ATTACH_LIST=()
+
+while read -r LINE; do
+    BUSID=$(echo "$LINE" | awk '{print $1}')
+    STATE=$(echo "$LINE" | awk '{ if ($(NF-1) == "Not") print $(NF-1) " " $NF; else print $NF}')
+
+    case "$STATE" in
+        "Not shared")
+            echo "[BIND] $BUSID will be shared"
+            BIND_LIST+=("$BUSID")
+            ;;
+        "Attached")
+            echo "[ATTACH] $BUSID is already attached to WSL"
+            ;;
+        "Shared")
+            echo "[ATTACH] $BUSID will be attached to WSL"
+            ATTACH_LIST+=("$BUSID")
+            ;;
+        *)
+            echo "[SKIP] $BUSID unknown state: $STATE"
+            ;;
+    esac
+done <<< "$MATCHING"
+
+# --- Step 4: Bind all devices that need it (in one run) ---
+if [ ${#BIND_LIST[@]} -gt 0 ]; then
+    echo
+    echo "[INFO] Binding ${#BIND_LIST[@]} device(s)... (admin rights required)"
+    for BUSID in "${BIND_LIST[@]}"; do
+        echo "  Binding $BUSID..."
+        powershell.exe -Command "Start-Process usbipd -ArgumentList 'bind','--busid','$BUSID' -Verb RunAs"
+        sleep 1
+    done
+else
+    echo
+    echo "[INFO] No devices need binding."
+fi
+
+# --- Step 5: Attach all shared devices to WSL ---
+if [ ${#BIND_LIST[@]} -gt 0 ] || [ ${#ATTACH_LIST[@]} -gt 0 ]; then
+    echo
+    echo "[INFO] Attaching devices to WSL..."
+    for BUSID in "${BIND_LIST[@]}" "${ATTACH_LIST[@]}"; do
+        echo "  Attaching $BUSID..."
+        usbipd.exe attach --busid "$BUSID" --wsl
+    done
+else
+    echo
+    echo "[INFO] Nothing to attach."
+fi
+
+echo
+echo "[DONE] All matching devices processed."
+
