@@ -2,7 +2,7 @@
 
 # === Configuration ===
 ARCHIVE_DIR="$HOME/.archives"
-DATE=$(date +%F)
+DATE=$(date +%F-%H%M%S)
 ARCHIVE_NAME="session-archive-$DATE.tgz"
 ARCHIVE_PATH="$ARCHIVE_DIR/$ARCHIVE_NAME"
 
@@ -17,18 +17,18 @@ FILES_TO_ARCHIVE=$(find . -maxdepth 1 -mindepth 1 ! -name '.*' ! -name '.archive
 
 # === If nothing to archive, exit gracefully ===
 if [ -z "$FILES_TO_ARCHIVE" ]; then
-    echo "ℹ️ Nothing to archive."
+    echo "Nothing to archive."
     exit 0
 fi
 
 # === Create archive ===
-echo "📦 Creating archive: $ARCHIVE_PATH"
+echo "Creating archive: $ARCHIVE_PATH"
 tar czf "$ARCHIVE_PATH" $FILES_TO_ARCHIVE || exit 1
 
 # === Delete original files after successful archive ===
-echo "🧹 Removing original files..."
+echo "Removing original files..."
 rm -rf $FILES_TO_ARCHIVE
 
-echo "✅ Cleanup complete. Archive saved at:"
-echo "   $ARCHIVE_PATH"
+echo "Cleanup complete. Archive saved at:"
+echo "  $ARCHIVE_PATH"
 
