@@ -10,6 +10,7 @@ sudo apt install -y \
     gcc-avr \
     avr-libc \
     make \
+    screen \
     python3 \
     python3-pip \
     python3-venv \
