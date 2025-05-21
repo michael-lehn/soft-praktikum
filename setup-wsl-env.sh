@@ -13,6 +13,7 @@ sudo apt install -y \
     python3 \
     python3-pip \
     python3-venv \
+    python-is-python3 \
     libasound2-dev \
     libsdl2-dev \
     libsdl2-mixer-dev \
@@ -21,6 +22,12 @@ sudo apt install -y \
     portaudio19-dev \
     libgl1-mesa-dev \
     libglu1-mesa-dev
+
+sudo cp usb_check /usr/local/bin
+sudo chmod a+x /usr/local/bin/usb_check
+
+curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+sudo mv bin/arduino-cli /usr/local/bin
 
 echo "🐍 Installing Python packages (user scope)..."
 pip install --break-system-packages --user pyserial
