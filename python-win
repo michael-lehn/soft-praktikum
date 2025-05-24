@@ -1,3 +1,11 @@
 #!/bin/bash
-/mnt/c/Users/$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r')/AppData/Local/Microsoft/WindowsApps/python.exe "$@"
 
+WINUSER=$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r')
+PYWIN="/mnt/c/Users/$WINUSER/AppData/Local/Microsoft/WindowsApps/python.exe"
+
+if [ -x "$PYWIN" ]; then
+    exec "$PYWIN" "$@"
+else
+    echo "❌ Windows-Python not found at $PYWIN"
+    exit 1
+fi
