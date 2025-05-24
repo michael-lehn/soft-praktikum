@@ -38,11 +38,27 @@ Wenn man das weiß, ist es leicht. Wenn nicht … reden wir lieber nicht darübe
 
 ## 2. WSL konfigurieren
 
-Skript `setup-wsl-env.sh` ausführen – es übernimmt den Rest:
+Repository klonen und das Setup-Skript ausführen – es übernimmt den Rest:
 
 ```bash
-./setup-wsl-env.sh
+git clone https://github.com/michael-lehn/soft-praktikum.git
+cd soft-praktikum
+sh setup-wsl-env.sh
 ```
+
+### 🧪 Quick & Easy (alles in einer Zeile)
+
+Falls du es noch einfacher willst: Kopiere einfach diese Zeile ins Terminal
+und drücke Enter:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/michael-lehn/soft-praktikum/main/setup-wsl-env.sh | sh
+```
+
+> 💡 Hinweis: Diese Variante lädt **nur das Skript** herunter und führt es aus
+> – es wird **nicht das ganze Git-Repository geklont**. Wenn du später den
+> Quellcode oder zusätzliche Dateien brauchst, solltest du trotzdem das
+> Repository klonen.
 
 ### Das macht das Skript:
 
