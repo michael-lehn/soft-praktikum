@@ -71,7 +71,7 @@ curl -fsSL https://raw.githubusercontent.com/michael-lehn/soft-praktikum/main/se
   - Falls nötig, wird **Python auf dem Windows-Host automatisch
     nachinstalliert** (über `winget`).
   - Grund: unter Windows funktioniert OpenGL besser – Linuxtreiber taugen bei
-    vielen Laptops leider nichts.
+    vielen Graphikkarten leider nichts.
 
 ---
 
