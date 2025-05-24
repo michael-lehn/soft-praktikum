@@ -1,10 +1,13 @@
 # WSL Installation und Konfiguration für die GPET-Rechner
 
-Dieses Repository dient als Merkliste und Setup-Anleitung zur Installation und
-Konfiguration von WSL für die Veranstaltung **Anwendungsorientierte
-Softwareentwicklung** (Soft-Praktikum). Es soll mir (Michael) die Vorbereitung
-in kommenden Jahren erleichtern – und gleichzeitig den Studierenden helfen, ihr
-eigenes System entsprechend aufzusetzen.
+Dieses Repository dokumentiert das Setup für die Veranstaltung
+**Anwendungsorientierte Softwareentwicklung** (Soft-Praktikum) und dient
+vorrangig als Merkliste für zukünftige Veranstaltungen, in denen ebenfalls WSL
+zum Einsatz kommt – oder als Hilfestellung für den Fall, dass jemand die
+Veranstaltung in ähnlicher Form weiterführen möchte.
+
+Gleichzeitig kann es den Teilnehmenden helfen, ihr eigenes System entsprechend
+einzurichten und unabhängig vom Laborrechner weiterzuarbeiten.
 
 ---
 
