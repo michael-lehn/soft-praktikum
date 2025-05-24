@@ -2,7 +2,7 @@
 
 Dieses Repository dient als Merkliste und Setup-Anleitung zur Installation und
 Konfiguration von WSL für die Veranstaltung **Anwendungsorientierte
-Softwareentwicklung** (Soft-Praktikum). Es soll dir (Michael) die Vorbereitung
+Softwareentwicklung** (Soft-Praktikum). Es soll mir (Michael) die Vorbereitung
 in kommenden Jahren erleichtern – und gleichzeitig den Studierenden helfen, ihr
 eigenes System entsprechend aufzusetzen.
 
