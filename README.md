@@ -55,7 +55,7 @@ Falls du es noch einfacher willst: Kopiere einfach diese Zeile ins Terminal
 und drücke Enter:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/michael-lehn/soft-praktikum/main/setup-wsl-env.sh | sh
+git clone https://github.com/michael-lehn/soft-praktikum.git && cd soft-praktikum && sh setup-wsl-env.sh
 ```
 
 > 💡 Hinweis: Diese Variante lädt **nur das Skript** herunter und führt es aus
