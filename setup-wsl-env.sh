@@ -90,6 +90,7 @@ if ! echo "$PATH" | grep -q "alias python="; then
     echo "🔧 add 'alias python=python3.13  in ~/.bashrc"
     echo 'alias python=python3.13' >> "$HOME/.bashrc"
     export PATH="$HOME/.local/bin:$PATH"
+    alias python=python3.13
 fi
 
 
