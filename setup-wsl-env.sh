@@ -27,6 +27,7 @@ sudo apt install -y \
     libgl1-mesa-dev \
     libglu1-mesa-dev
 
+
 echo "📦 Installing usb_check ..."
 sudo cp usb_check /usr/local/bin
 sudo chmod a+x /usr/local/bin/usb_check
@@ -78,6 +79,18 @@ fi
 echo "📦 Installing python-win (wrapper for python on Windows host) ..."
 sudo cp python-win /usr/local/bin
 sudo chmod a+x /usr/local/bin/python-win
+
+
+#hack: because python 3.12 is buggy
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.13
+
+if ! echo "$PATH" | grep -q "alias python="; then
+    echo "🔧 add 'alias python=python3.13  in ~/.bashrc"
+    echo 'alias python=python3.13' >> "$HOME/.bashrc"
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 
 echo "✅ Setup complete!"
