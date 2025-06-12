@@ -84,14 +84,21 @@ sudo chmod a+x /usr/local/bin/python-win
 #hack: because python 3.12 is buggy
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.13
+sudo apt install python3.13 
 
-if ! echo "$PATH" | grep -q "alias python="; then
-    echo "🔧 add 'alias python=python3.13  in ~/.bashrc"
+if ! cat "$HOME/.bashrc" | grep -q "alias python="; then
+    echo "🔧 add 'alias for python3.13  in ~/.bashrc"
     echo 'alias python=python3.13' >> "$HOME/.bashrc"
     export PATH="$HOME/.local/bin:$PATH"
-    alias python=python3.13
 fi
+python3.13 -m ensurepip --upgrade
+python3.13 -m pip install --user pygame
+python3.13 -m pip install --user pyserial
+python3.13 -m pip install --user keyboard
+python3.13 -m pip install --user vpython
+python3.13 -m pip install --user PyOpenGL PyOpenGL_accelerate
+python3.13 -m pip install --user pygame
+python3.13 -m pip install --user sounddevice numpy
 
 
 echo "✅ Setup complete!"
